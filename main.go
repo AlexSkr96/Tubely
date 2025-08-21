@@ -87,11 +87,10 @@ func main() {
 		log.Fatal("PORT environment variable is not set")
 	}
 
-	awsConfig, err := config.LoadDefaultConfig(context.Background())
+	awsConfig, err := config.LoadDefaultConfig(context.Background(), config.WithRegion(s3Region))
 	if err != nil {
 		log.Fatalf("Couldn't load AWS config: %v", err)
 	}
-	awsConfig.Region = s3Region
 
 	cfg := apiConfig{
 		db:           db,
