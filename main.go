@@ -16,15 +16,16 @@ import (
 )
 
 type apiConfig struct {
-	db           database.Client
-	jwtSecret    string
-	platform     string
-	filepathRoot string
-	assetsRoot   string
-	port         string
-	s3Client     *s3.Client
-	s3Bucket     string
-	s3Region     string
+	db               database.Client
+	jwtSecret        string
+	platform         string
+	filepathRoot     string
+	assetsRoot       string
+	port             string
+	s3Client         *s3.Client
+	s3Bucket         string
+	s3Region         string
+	s3CfDistribution string
 }
 
 type thumbnail struct {
@@ -93,15 +94,16 @@ func main() {
 	}
 
 	cfg := apiConfig{
-		db:           db,
-		jwtSecret:    jwtSecret,
-		platform:     platform,
-		filepathRoot: filepathRoot,
-		assetsRoot:   assetsRoot,
-		port:         port,
-		s3Client:     s3.NewFromConfig(awsConfig),
-		s3Bucket:     s3Bucket,
-		s3Region:     s3Region,
+		db:               db,
+		jwtSecret:        jwtSecret,
+		platform:         platform,
+		filepathRoot:     filepathRoot,
+		assetsRoot:       assetsRoot,
+		port:             port,
+		s3Client:         s3.NewFromConfig(awsConfig),
+		s3Bucket:         s3Bucket,
+		s3Region:         s3Region,
+		s3CfDistribution: s3CfDistribution,
 	}
 
 	err = cfg.ensureAssetsDir()
